@@ -1,36 +1,35 @@
+
+
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 8f;
-    [SerializeField] float acceleration = 60f;
-    [SerializeField] float deceleration = 50f;
+    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float rotateSpeed = 2f;
 
-    Rigidbody2D rb;
-    Vector2 moveInput;
-    Vector2 currentVelocity;
+    private Vector2 movementVector;
 
-    void Awake()
+    private Rigidbody2D rb;
+
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0f;
-        rb.freezeRotation = true;
-        rb.interpolation = RigidbodyInterpolation2D.Interpolate;
     }
 
-    void Update()
+    private void Update()
     {
-        moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if (moveInput.sqrMagnitude > 1f)
-            moveInput.Normalize();
+        movementVector.x = Input.GetAxisRaw("Horizontal");
+        movementVector.y = Input.GetAxisRaw("Vertical");
+
+
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        Vector2 targetVelocity = moveInput * moveSpeed;
-        float rate = moveInput.sqrMagnitude > 0.01f ? acceleration : deceleration;
-        currentVelocity = Vector2.MoveTowards(currentVelocity, targetVelocity, rate * Time.fixedDeltaTime);
-        rb.velocity = currentVelocity;
+        //rb.velocity = new Vector2(movementVector.x * moveSpeed, movementVector.y * moveSpeed);
+        rb.velocity = new Vector2(movementVector.x, movementVector.y).normalized * moveSpeed;
+
     }
+
+
 }
