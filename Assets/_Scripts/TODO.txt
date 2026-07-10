@@ -29,3 +29,6 @@
 
 [] Change player sprite to a pumking
 [] Add a sword to player's hand and play a swoosh animation
+[] Implement dummy ennemies and damage system
+[] Add damage number above the enimies
+[] Add dash (space) mechanism to player

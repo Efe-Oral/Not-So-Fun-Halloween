@@ -32,7 +32,7 @@ public class LookAtCamera : MonoBehaviour
 
         var angleToRotate = Mathf.Atan2(mousePositionDirection.y, mousePositionDirection.x) * Mathf.Rad2Deg;
 
-        gameObject.transform.rotation = Quaternion.Euler(0, 0, angleToRotate * rotateSpeed);
+        gameObject.transform.rotation = Quaternion.Euler(0, 0, angleToRotate - 90f);
 
 
 
