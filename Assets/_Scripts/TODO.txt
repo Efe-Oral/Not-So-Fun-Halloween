@@ -32,3 +32,36 @@
 [] Implement dummy ennemies and damage system
 [] Add damage number above the enimies
 [] Add dash (space) mechanism to player
+
+
+
+Todos By Ege:
+[X] Download Unity MCP
+[X] Fork usage and understanding the interface
+[X] Check DoTween library
+[] Fully understand what the code does
+[] Rider download and setup
+
+
+Feature: 
+1- Adding sword to the game.
+ 
+ - DoD: 
+ * Assets implementation. DONE
+
+SWORD
+ 
+Logic:
+  - Sword rotation logic
+  - Sword sound implementation
+  - User input, if press during anim ignore input
+
+Config:
+  - Hitbox (Config) ScriptableObject
+  - Hit radius (Config) ScriptableObject
+
+Animation:
+  - Swing animation
+  - Sword particles during swing
+
+  Config = Can be changed
