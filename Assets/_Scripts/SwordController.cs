@@ -18,7 +18,6 @@ public class SwordController : MonoBehaviour
 
     void Update()
     {
-        // Ignore input while a swing is playing.
         if (!isSwinging && Input.GetKeyDown(swingKey))
         {
             Swing();
