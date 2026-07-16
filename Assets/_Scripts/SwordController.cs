@@ -13,8 +13,18 @@ public class SwordController : MonoBehaviour
     [Header("Input")]
     [SerializeField] KeyCode swingKey = KeyCode.Mouse0;
 
+    [Header("Hitbox")]
+    [Tooltip("The sword's damage trigger. Left empty, it is found on the sword sprite child automatically.")]
+    [SerializeField] SwordHitbox hitbox;
+
     bool isSwinging;
     Sequence swingSequence;
+
+    void Awake()
+    {
+        // The SwordHitbox lives on the sword sprite, which is a child of this pivot.
+        if (hitbox == null) hitbox = GetComponentInChildren<SwordHitbox>();
+    }
 
     void Update()
     {
@@ -27,6 +37,7 @@ public class SwordController : MonoBehaviour
     void Swing()
     {
         isSwinging = true;
+        if (hitbox != null) hitbox.BeginSwing();   // turn the damage trigger on for this swing
 
         float half = config.swingArc * 0.5f;
 
@@ -44,7 +55,11 @@ public class SwordController : MonoBehaviour
 
         if (config.cooldown > 0f) swingSequence.AppendInterval(config.cooldown);
 
-        swingSequence.OnComplete(() => isSwinging = false);
+        swingSequence.OnComplete(() =>
+        {
+            isSwinging = false;
+            if (hitbox != null) hitbox.EndSwing();   // turn the damage trigger back off
+        });
     }
 
     void OnDestroy()
