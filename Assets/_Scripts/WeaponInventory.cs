@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,10 +20,14 @@ public class WeaponInventory : MonoBehaviour
     [SerializeField] Color selectedColor = Color.yellow;
     [SerializeField] Color normalColor = Color.gray;
 
+    public bool isSlingshotEquipped;
+
+
     void Start()
     {
         // Start the game with the melee weapon equipped.
         EquipMelee();
+        isSlingshotEquipped = false;
     }
 
     void Update()
@@ -36,6 +41,8 @@ public class WeaponInventory : MonoBehaviour
 
     void EquipMelee()
     {
+        isSlingshotEquipped = false;
+
         // Turn the sword on, the shooter off.
         meleeWeapon.SetActive(true);
         projectileWeapon.SetActive(false);
@@ -47,6 +54,8 @@ public class WeaponInventory : MonoBehaviour
 
     void EquipProjectile()
     {
+        isSlingshotEquipped = true;
+
         // Turn the shooter on, the sword off.
         meleeWeapon.SetActive(false);
         projectileWeapon.SetActive(true);

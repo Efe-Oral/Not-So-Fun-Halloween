@@ -8,9 +8,12 @@ public class ProjectileWeapon : MonoBehaviour
     [SerializeField] GameObject seedPrefab;  // the pumpkin seed to spawn
     [SerializeField] float seedSpeed = 12f;
 
+    [SerializeField] WeaponInventory weaponInventory;
+
+
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))  // 0 = left mouse button
+        if (Input.GetMouseButtonDown(0) && weaponInventory.isSlingshotEquipped)  // 0 = left mouse button
             Shoot();
     }
 

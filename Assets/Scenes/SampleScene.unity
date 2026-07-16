@@ -931,6 +931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seedPrefab: {fileID: 8849398997237373220, guid: fed35d53c43506e4b9a1b8ac43400ef8, type: 3}
   seedSpeed: 20
+  weaponInventory: {fileID: 1047510336}
 --- !u!1 &942684305
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,6 +1230,7 @@ MonoBehaviour:
   projectileSlot: {fileID: 224310673}
   selectedColor: {r: 1, g: 0.5094288, b: 0.015686274, a: 0.39215687}
   normalColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.54901963}
+  isSlingshotEquipped: 0
 --- !u!4 &1047510337
 Transform:
   m_ObjectHideFlags: 0
