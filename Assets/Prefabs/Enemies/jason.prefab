@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4d65601795dae46854339f70419f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashColor: {r: 0.89433956, g: 0.3357991, b: 0.3357991, a: 1}
   flashDuration: 0.15
 --- !u!114 &504597074705876999
 MonoBehaviour:
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14f89309c33017e4fbc30a7c207300eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 11
+  maxHealth: 8
 --- !u!114 &2559806024058251403
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 5843724374611154737}
   - component: {fileID: 3685207429428431640}
   - component: {fileID: 6022480218864989253}
+  - component: {fileID: 3171621068321103517}
   - component: {fileID: 5769702213920519689}
+  - component: {fileID: -1313970803111485662}
+  - component: {fileID: 3723831261435350759}
   m_Layer: 0
   m_Name: freddy
   m_TagString: Untagged
@@ -131,6 +134,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.19, y: 5.13}
   m_EdgeRadius: 0
+--- !u!50 &3171621068321103517
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3868582839867634199}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!114 &5769702213920519689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,5 +173,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4d65601795dae46854339f70419f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashColor: {r: 0.89411765, g: 0.3372549, b: 0.3372549, a: 1}
   flashDuration: 0.15
+--- !u!114 &-1313970803111485662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3868582839867634199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14f89309c33017e4fbc30a7c207300eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 14
+--- !u!114 &3723831261435350759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3868582839867634199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da8934f37dc22f4aaf863215595c1f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  config: {fileID: 11400000, guid: ea4e3902eb7d7f34890eb72c4c87a866, type: 2}
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  whiskerLength: 1.2
