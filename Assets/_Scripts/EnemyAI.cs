@@ -15,6 +15,10 @@ public class EnemyAI : MonoBehaviour
     [Header("Config (which difficulty tier this is)")]
     [SerializeField] EnemyConfig config;
 
+    // Lets other enemy scripts (like EnemyAttack) read the same tier settings
+    // without you having to drag the config asset onto every component separately.
+    public EnemyConfig Config => config;
+
     [Header("Obstacle Avoidance")]
     [Tooltip("Which layers count as walls to steer around. Leave empty for now if your " +
              "buildings don't have a dedicated layer yet - the enemy just won't avoid them.")]

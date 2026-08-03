@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyConfig_Medium
   m_EditorClassIdentifier: 
   tierName: Easy
-  maxHealth: 5
+  maxHealth: 11
   moveSpeed: 3.2
   patrolSpeedMultiplier: 0.5
   patrolRadius: 4

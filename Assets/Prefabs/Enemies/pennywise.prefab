@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 668799166164312981}
   - component: {fileID: -1352398239300633527}
   - component: {fileID: 6941600798481656874}
+  - component: {fileID: 2329321133966926710}
   m_Layer: 0
   m_Name: pennywise
   m_TagString: Untagged
@@ -205,3 +206,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   whiskerLength: 1.2
+--- !u!114 &2329321133966926710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6477290341071074539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78398772810af444c93fe9cf3fa88ee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  config: {fileID: 0}

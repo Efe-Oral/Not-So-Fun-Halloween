@@ -47,6 +47,13 @@ public class EnemyConfig : ScriptableObject
              "chases for this many seconds before it's allowed to give up and return to patrol.")]
     public float aggroDuration = 5f;
 
+    [Header("Contact Damage")]
+    [Tooltip("How much health the player loses from simply touching this enemy.")]
+    public float contactDamage = 3f;
+    [Tooltip("Seconds before this enemy can hurt the player by touch again. Without this, " +
+             "standing against an enemy would deal damage every physics frame (~50x a second).")]
+    public float contactDamageInterval = 1f;
+
     [Header("Attack (behavior added in Phase 2)")]
     public EnemyAttackType attackType = EnemyAttackType.ContactMelee;
     [Tooltip("Enemy stops approaching and switches to its attack once within this distance.")]
