@@ -1,14 +1,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// The collider must have "Is Trigger" checked. It only hits enemies while the sword is
-// swinging, and hits each enemy at most once per swing.
+// Put this on the SWORD sprite object (the one with the BoxCollider2D).
+// The collider must have "Is Trigger" checked. It only hits while the sword is
+// swinging, and hits each target at most once per swing.
+//
+// It deals damage through the IDamageable contract, so it doesn't care WHAT it hits -
+// any enemy (or breakable prop) with a Health component takes damage. It skips anything
+// tagged "Player" so you can't cut yourself.
 public class SwordHitbox : MonoBehaviour
 {
     Collider2D hitboxCollider;
 
-    // Enemies we already hit during this swing, so we don't hit them twice.
-    readonly HashSet<EnemyHitFlash> alreadyHit = new HashSet<EnemyHitFlash>();
+    // How much damage this swing deals. SwordController sets it from the SwordConfig
+    // each time a swing begins.
+    float damage;
+
+    // Targets we already hit during this swing, so we don't hit them twice.
+    readonly HashSet<IDamageable> alreadyHit = new HashSet<IDamageable>();
 
     void Awake()
     {
@@ -16,9 +25,10 @@ public class SwordHitbox : MonoBehaviour
         hitboxCollider.enabled = false;   // off until a swing starts
     }
 
-    // SwordController calls this when a swing starts.
-    public void BeginSwing()
+    // SwordController calls this when a swing starts, passing the config's damage.
+    public void BeginSwing(float swingDamage)
     {
+        damage = swingDamage;
         alreadyHit.Clear();
         hitboxCollider.enabled = true;
     }
@@ -31,14 +41,16 @@ public class SwordHitbox : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Only react to enemies (objects that have the EnemyHitFlash script).
-        EnemyHitFlash enemy = other.GetComponent<EnemyHitFlash>();
-        if (enemy == null) return;
+        // Never hit the player with the player's own sword.
+        if (other.CompareTag("Player")) return;
 
-        // Don't hit the same enemy twice in one swing.
-        if (alreadyHit.Contains(enemy)) return;
+        // Only react to things that can be damaged.
+        IDamageable target = other.GetComponentInParent<IDamageable>();
+        if (target == null || target.IsDead) return;
 
-        alreadyHit.Add(enemy);
-        enemy.Flash();
+        // Don't hit the same target twice in one swing.
+        if (!alreadyHit.Add(target)) return;
+
+        target.TakeDamage(damage);
     }
 }

@@ -37,7 +37,7 @@ public class SwordController : MonoBehaviour
     void Swing()
     {
         isSwinging = true;
-        if (hitbox != null) hitbox.BeginSwing();   // turn the damage trigger on for this swing
+        if (hitbox != null) hitbox.BeginSwing(config.damage);   // turn the damage trigger on for this swing
 
         float half = config.swingArc * 0.5f;
 
