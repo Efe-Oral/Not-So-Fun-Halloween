@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Put this on the SWORD sprite object (the one with the BoxCollider2D).
 // The collider must have "Is Trigger" checked. It only hits enemies while the sword is
 // swinging, and hits each enemy at most once per swing.
 public class SwordHitbox : MonoBehaviour

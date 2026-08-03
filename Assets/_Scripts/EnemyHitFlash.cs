@@ -1,9 +1,13 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
-// Put this on the enemy (Jason), on the same object as its SpriteRenderer.
-// Call Flash() to make the enemy quickly blink white and then return to normal.
+// Makes the enemy blink white for a moment whenever it takes damage.
+// Put this on the enemy, on the same object as its SpriteRenderer.
+//
+// It no longer has to be called by the weapon. Instead it LISTENS to the enemy's
+// Health: whenever Health fires OnDamaged, this flashes. So ANY damage source
+// (sword, pumpkin seed, a future trap) triggers the flash for free.
+[RequireComponent(typeof(SpriteRenderer))]
 public class EnemyHitFlash : MonoBehaviour
 {
     [SerializeField] Color flashColor = Color.white;
@@ -11,12 +15,31 @@ public class EnemyHitFlash : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
     Color originalColor;
+    Health health;
 
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;   // remember the real color once, at the start
+
+        // Health may sit on this object or on a parent - look in both places.
+        health = GetComponentInParent<Health>();
     }
+
+    // Subscribe/unsubscribe in OnEnable/OnDisable so we never leak a listener
+    // or react after this object is turned off.
+    void OnEnable()
+    {
+        if (health != null) health.OnDamaged += HandleDamaged;
+    }
+
+    void OnDisable()
+    {
+        if (health != null) health.OnDamaged -= HandleDamaged;
+    }
+
+    // Health passes the damage amount; we don't need it here, just the fact that we were hit.
+    void HandleDamaged(float amount) => Flash();
 
     // Blink white, then go back to the original color.
     public void Flash()

@@ -25,4 +25,8 @@ public class SwordConfig : ScriptableObject
     [Header("Cooldown")]
     [Tooltip("Extra time after the swing before another swing is allowed.")]
     public float cooldown = 0.05f;
+
+    [Header("Damage")]
+    [Tooltip("How much health each hit removes from an enemy.")]
+    public float damage = 1f;
 }
