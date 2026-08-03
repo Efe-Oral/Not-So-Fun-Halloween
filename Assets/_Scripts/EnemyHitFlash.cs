@@ -4,9 +4,6 @@ using UnityEngine;
 // Makes the enemy blink white for a moment whenever it takes damage.
 // Put this on the enemy, on the same object as its SpriteRenderer.
 //
-// It no longer has to be called by the weapon. Instead it LISTENS to the enemy's
-// Health: whenever Health fires OnDamaged, this flashes. So ANY damage source
-// (sword, pumpkin seed, a future trap) triggers the flash for free.
 [RequireComponent(typeof(SpriteRenderer))]
 public class EnemyHitFlash : MonoBehaviour
 {

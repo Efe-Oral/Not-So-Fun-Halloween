@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 2473820622188288053}
   - component: {fileID: 3582675136041061988}
   - component: {fileID: 7619892993949704572}
+  - component: {fileID: 6809214144652981038}
   - component: {fileID: 3086094368063357034}
   - component: {fileID: 504597074705876999}
+  - component: {fileID: 2559806024058251403}
   m_Layer: 0
   m_Name: jason
   m_TagString: Untagged
@@ -132,6 +134,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.0765493, y: 5.142404}
   m_EdgeRadius: 0
+--- !u!50 &6809214144652981038
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2604558715202346688}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!114 &3086094368063357034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,3 +188,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 11
+--- !u!114 &2559806024058251403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2604558715202346688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da8934f37dc22f4aaf863215595c1f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  config: {fileID: 11400000, guid: 8a73c657eef7e054182be81d57e1ffce, type: 2}
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  whiskerLength: 1.2
