@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faf68f2e82d7360428399218df8ab295, type: 3}
   m_Name: EnemyConfig_Medium
   m_EditorClassIdentifier: 
-  tierName: Easy
+  tierName: Medium
   maxHealth: 11
+  scaleX: 1
+  scaleY: 1
+  scaleZ: 1
   moveSpeed: 3.2
   patrolSpeedMultiplier: 0.5
   patrolRadius: 4
@@ -22,5 +25,7 @@ MonoBehaviour:
   detectionRange: 6
   loseSightRange: 8
   aggroDuration: 7
+  contactDamage: 3
+  contactDamageInterval: 1
   attackType: 1
   attackRange: 1.4

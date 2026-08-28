@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5818586959305330619}
   - component: {fileID: -5462476874148169309}
   - component: {fileID: 2373894803217672688}
+  - component: {fileID: -6326176749988626371}
   m_Layer: 0
   m_Name: leatherface
   m_TagString: Untagged
@@ -218,4 +219,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78398772810af444c93fe9cf3fa88ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  config: {fileID: 0}
+  config: {fileID: 11400000, guid: f9646226e72e5fa47a0d68b351c0d41e, type: 2}
+--- !u!114 &-6326176749988626371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5183156168198019032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d144e8b83bd69b438beabc9da36b450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyConfig: {fileID: 11400000, guid: f9646226e72e5fa47a0d68b351c0d41e, type: 2}

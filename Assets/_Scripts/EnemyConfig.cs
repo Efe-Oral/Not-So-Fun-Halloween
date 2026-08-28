@@ -22,6 +22,11 @@ public class EnemyConfig : ScriptableObject
     [Header("Health")]
     public float maxHealth = 3f;
 
+    [Header("Scale")]
+    public float scaleX = 1f;
+    public float scaleY = 1f;
+    public float scaleZ = 1f;
+
     [Header("Movement")]
     [Tooltip("Speed (units/sec) while chasing the player.")]
     public float moveSpeed = 2f;
