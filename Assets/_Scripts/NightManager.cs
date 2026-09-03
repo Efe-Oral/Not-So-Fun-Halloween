@@ -59,6 +59,7 @@ public class NightManager : MonoBehaviour
     {
         aliveEnemies.Clear();
         OnWaveStarted?.Invoke(waveIndex);
+        Debug.Log("Starting wave #" + waveIndex);
 
         yield return StartCoroutine(spawner.SpawnWave(wave, RegisterEnemy));
 

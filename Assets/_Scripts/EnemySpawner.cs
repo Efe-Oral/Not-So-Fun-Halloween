@@ -34,7 +34,7 @@ public class EnemySpawner : MonoBehaviour
     [Tooltip("Radius used when checking a candidate spawn point against obstacleMask.")]
     [SerializeField] float obstacleCheckRadius = 0.5f;
     [Tooltip("Optional: candidate points outside this collider's bounds are rejected, so enemies can't spawn outside the playable map. Leave empty to skip the check.")]
-    [SerializeField] Collider2D levelBounds;
+    [SerializeField] Collider2D levelMapBounds;
     [SerializeField] int maxAttemptsPerEnemy = 20;
 
     void Awake()
@@ -105,7 +105,7 @@ public class EnemySpawner : MonoBehaviour
             float angle = UnityEngine.Random.Range(0f, Mathf.PI * 2f);
             candidate = origin + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
 
-            if (levelBounds != null && !levelBounds.bounds.Contains(candidate)) continue;
+            if (levelMapBounds != null && !levelMapBounds.bounds.Contains(candidate)) continue;
 
             if (obstacleMask.value != 0 &&
                 Physics2D.OverlapCircle(candidate, obstacleCheckRadius, obstacleMask) != null) continue;
