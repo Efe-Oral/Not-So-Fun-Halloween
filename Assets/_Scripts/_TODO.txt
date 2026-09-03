@@ -26,11 +26,17 @@
 
 
 [X] Implement player look at camera
+[X] Add a sword to player's hand and play a swoosh animation
 
 [] Change player sprite to a pumking
-[] Add a sword to player's hand and play a swoosh animation
 [] Implement dummy ennemies and damage system
-[] Add damage number above the enimies
+[] Implement enemy spawner for different diffuculties
+[] Implement enemy death
+[] Implement enemy follow player
+[] Add enemy health bar and shoots out damage numbers above them
+[] Add outlines to enemy based on diffuclty (blue-orange-red)
+[] Create the map
+[] Add a minimap
 [] Add dash (space) mechanism to :
 
 
@@ -39,8 +45,8 @@ Todos By Ege:
 [X] Download Unity MCP
 [X] Fork usage and understanding the interface
 [X] Check DoTween library
-[] Fully understand what the code does
-[] Rider download and setup
+[X] Fully understand what the code does
+[X] Rider download and setup
 
 
 Feature: 
@@ -50,7 +56,6 @@ Feature:
  * Assets implementation. DONE
 
 SWORD
- 
 Logic:
   - Sword rotation logic
   - Sword sound implementation
