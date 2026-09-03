@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: EnemyConfig_Hard
   m_EditorClassIdentifier: 
   tierName: Hard
+  difficulty: 2
   maxHealth: 14
   scaleX: 2
   scaleY: 2

@@ -19,10 +19,7 @@ public class PlayerIdleAnimator : MonoBehaviour
     [SerializeField] ParticleSystem idleParticles;   // ambient embers, only emit while idle
     [SerializeField] ParticleSystem moveDust;        // footstep dust, only emits while moving
 
-    [Header("Idle Detection")]
-    [Tooltip("Below this speed (units/sec) the player counts as 'idle'.")]
-    [SerializeField] float moveThreshold = 0.05f;
-
+    
     [Header("Squash & Stretch")]
     [Tooltip("How far the scale swings from 1.0 on each axis (e.g. 0.08 = 1.08/0.92).")]
     [SerializeField] float squashAmount = 0.08f;
@@ -33,6 +30,7 @@ public class PlayerIdleAnimator : MonoBehaviour
     Rigidbody2D rb;
     Tween pulseTween;
     bool isIdle;
+    private float moveThreshold = 0.05f;
 
     void Awake()
     {

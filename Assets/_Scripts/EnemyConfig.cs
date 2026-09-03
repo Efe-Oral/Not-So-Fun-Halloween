@@ -9,6 +9,15 @@ public enum EnemyAttackType
     Ranged          // winds up, then fires a projectile from range (Hard)
 }
 
+// Which difficulty tier a config belongs to. The wave spawner groups enemy prefabs
+// by this so a wave can ask for "2 Easy, 1 Hard" instead of naming specific prefabs.
+public enum EnemyDifficulty
+{
+    Easy,
+    Medium,
+    Hard
+}
+
 // All the tunable numbers for ONE enemy difficulty tier. Create one via
 // Assets > Create > Halloween > Enemy Config, then drop it onto an enemy's EnemyAI.
 // Make three of these (Easy / Medium / Hard) - same AI script, different numbers.
@@ -18,6 +27,9 @@ public class EnemyConfig : ScriptableObject
     [Header("Identity")]
     [Tooltip("Just a label to keep your assets straight, e.g. Easy / Medium / Hard.")]
     public string tierName = "Easy";
+    [Tooltip("Which difficulty group this config belongs to. The wave spawner uses this " +
+             "to decide which enemy prefabs count as Easy/Medium/Hard.")]
+    public EnemyDifficulty difficulty = EnemyDifficulty.Easy;
 
     [Header("Health")]
     public float maxHealth = 3f;

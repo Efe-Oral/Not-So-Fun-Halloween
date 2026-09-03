@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: EnemyConfig_Easy
   m_EditorClassIdentifier: 
   tierName: Easy
+  difficulty: 0
   maxHealth: 8
+  scaleX: 1
+  scaleY: 1
+  scaleZ: 1
   moveSpeed: 2
   patrolSpeedMultiplier: 0.5
   patrolRadius: 3
@@ -22,5 +26,7 @@ MonoBehaviour:
   detectionRange: 5
   loseSightRange: 7
   aggroDuration: 4
+  contactDamage: 3
+  contactDamageInterval: 1
   attackType: 0
   attackRange: 1

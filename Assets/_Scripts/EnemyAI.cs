@@ -29,6 +29,7 @@ public class EnemyAI : MonoBehaviour
     Rigidbody2D rb;
     Health health;
     Transform player;
+     Collider2D collider;
 
     State state;
     Vector2 home;            // where we started - the center of our patrol area
@@ -44,6 +45,7 @@ public class EnemyAI : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         health = GetComponent<Health>();
+        collider = GetComponent<Collider2D>();
     }
 
     void OnEnable()
@@ -238,6 +240,7 @@ public class EnemyAI : MonoBehaviour
     {
         state = State.Dead;
         rb.velocity = Vector2.zero;
+        collider.enabled = false;
     }
 
     // Draw the detection/attack ranges in the Scene view when the enemy is selected,

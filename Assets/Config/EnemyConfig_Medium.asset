@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: EnemyConfig_Medium
   m_EditorClassIdentifier: 
   tierName: Medium
+  difficulty: 1
   maxHealth: 11
   scaleX: 1
   scaleY: 1
