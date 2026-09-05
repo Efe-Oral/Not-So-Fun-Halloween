@@ -33,7 +33,13 @@ public class WaveAudioManager : MonoBehaviour
 
     // secondsRemaining is unused here but has to match OnCountdownTick's Action<int> signature.
     void HandleCountdownTick(int secondsRemaining) => Play(countdownTickClip);
-    void HandleWaveStarted(int waveIndex) => Play(waveStartClip);
+
+    // void HandleWaveStarted(int waveIndex) => Play(waveStartClip);
+    void HandleWaveStarted(int waveIndex)
+    {
+        Play(waveStartClip);
+    }
+
     void HandleWaveCleared(int waveIndex) => Play(waveClearedClip);
     void HandleNightComplete() => Play(nightCompleteClip);
 

@@ -9,7 +9,7 @@ using DG.Tweening;
 public class NightStartPrompt : MonoBehaviour
 {
     [SerializeField] NightManager nightManager;
-    [SerializeField] Image promptImage;
+    [SerializeField] Image promptImage; //"press space to start..."
     [SerializeField] KeyCode startKey = KeyCode.Space;
 
     [Header("Floating animation")]
@@ -42,7 +42,7 @@ public class NightStartPrompt : MonoBehaviour
 
     void Update()
     {
-        if (started) return;
+        if (started == true) return;
         if (Input.GetKeyDown(startKey)) Begin();
     }
 
