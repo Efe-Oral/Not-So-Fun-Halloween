@@ -59,7 +59,10 @@ public class WaveAnnouncerUI : MonoBehaviour
 
     void HandleCountdownTick(int secondsRemaining)
     {
-        ShowPhrase(nextWaveInSprite);
+        // CurrentWaveNumber is still 0 during the countdown before wave 1 - skip the "next
+        // wave in..." banner there since "night starts!" (from HandleWaveStarted) already
+        // announces it once the wave actually begins; between-wave countdowns still show it.
+        if (nightManager.CurrentWaveNumber > 0) ShowPhrase(nextWaveInSprite);
 
         int index = secondsRemaining - 1; // remaining=1 -> "1" sprite at index 0, etc.
         if (index >= 0 && index < countdownSprites.Length)

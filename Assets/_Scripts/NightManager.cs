@@ -49,6 +49,9 @@ public class NightManager : MonoBehaviour
 
     IEnumerator RunNight()
     {
+        // Still ticks OnCountdownTick (CurrentWaveNumber is 0 here, before any wave has
+        // started) so the UI shows "3, 2, 1" - it just skips the "next wave in..." label,
+        // since wave 0 announces itself with "night starts!" once it actually begins.
         yield return StartCoroutine(RunCountdown(delayBeforeFirstWave));
 
         for (int i = 0; i < waves.Length; i++)
