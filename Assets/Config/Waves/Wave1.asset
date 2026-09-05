@@ -16,11 +16,11 @@ MonoBehaviour:
   spawnRanges:
   - difficulty: 0
     minCount: 2
-    maxCount: 4
+    maxCount: 2
   - difficulty: 1
-    minCount: 0
-    maxCount: 1
+    minCount: 2
+    maxCount: 2
   - difficulty: 2
-    minCount: 0
-    maxCount: 0
+    minCount: 2
+    maxCount: 2
   spawnStagger: 0.15

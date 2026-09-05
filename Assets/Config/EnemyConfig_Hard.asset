@@ -15,9 +15,9 @@ MonoBehaviour:
   tierName: Hard
   difficulty: 2
   maxHealth: 14
-  scaleX: 2
-  scaleY: 2
-  scaleZ: 6
+  scaleX: 1
+  scaleY: 1
+  scaleZ: 1
   moveSpeed: 3.8
   patrolSpeedMultiplier: 0.6
   patrolRadius: 5

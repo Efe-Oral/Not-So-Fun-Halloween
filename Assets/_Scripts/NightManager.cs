@@ -15,26 +15,41 @@ public class NightManager : MonoBehaviour
     [Header("Pacing")]
     [SerializeField] float delayBeforeFirstWave = 2f;
     [SerializeField] float delayBetweenWaves = 5f;
+    [Tooltip("How many of the final countdown ticks carry a number (matches how many digit " +
+             "sprites the UI has). The countdown always shows at least one label-only tick " +
+             "('next wave in...' alone) before the numbers start, so short delays get " +
+             "stretched to at least countdownDigits + 1 seconds.")]
+    [SerializeField] int countdownDigits = 3;
 
     // waveIndex is 0-based (0 = Wave 1).
     public event Action<int> OnWaveStarted;
     public event Action<int> OnWaveCleared;
     public event Action OnNightComplete;
 
+    // Fired once per second while waiting before a wave, counting down to 0 (e.g. 3, 2, 1).
+    // UI/audio use this for "wave incoming" countdowns instead of the wave just popping in.
+    public event Action<int> OnCountdownTick;
+
     public int CurrentWaveNumber { get; private set; } // 1-based, 0 before the night starts
     public int TotalWaves => waves.Length;
     public bool IsNightComplete { get; private set; }
 
     readonly List<Health> aliveEnemies = new List<Health>();
+    bool nightStarted;
 
-    void Start()
+    // Doesn't auto-start in Start() - something else (e.g. NightStartPrompt, gated on a key
+    // press) has to call this. Keeps NightManager reactive/driven, the same way it doesn't
+    // know or care who's listening to its own events.
+    public void BeginNight()
     {
+        if (nightStarted) return;
+        nightStarted = true;
         StartCoroutine(RunNight());
     }
 
     IEnumerator RunNight()
     {
-        yield return new WaitForSeconds(delayBeforeFirstWave);
+        yield return StartCoroutine(RunCountdown(delayBeforeFirstWave));
 
         for (int i = 0; i < waves.Length; i++)
         {
@@ -48,17 +63,36 @@ public class NightManager : MonoBehaviour
             yield return StartCoroutine(RunWave(i, waves[i]));
 
             if (i < waves.Length - 1)
-                yield return new WaitForSeconds(delayBetweenWaves);
+                yield return StartCoroutine(RunCountdown(delayBetweenWaves));
         }
 
         IsNightComplete = true;
         OnNightComplete?.Invoke();
     }
 
+    // Counts down to 1, firing OnCountdownTick once per second. Always includes at least one
+    // tick above countdownDigits (e.g. "4") before entering the numbered "3, 2, 1" range, so
+    // the "next wave in..." label always gets a beat on its own first instead of popping in
+    // at the same instant as the first number. If seconds is too short to fit that, the wait
+    // is stretched to countdownDigits + 1 rather than skipping the label-only beat.
+    IEnumerator RunCountdown(float seconds)
+    {
+        int wholeSeconds = Mathf.Max(Mathf.CeilToInt(seconds), countdownDigits + 1);
+        for (int remaining = wholeSeconds; remaining > 0; remaining--)
+        {
+            OnCountdownTick?.Invoke(remaining);
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
     IEnumerator RunWave(int waveIndex, WaveConfig wave)
     {
         aliveEnemies.Clear();
-        OnWaveStarted?.Invoke(waveIndex);
+        if (OnWaveStarted != null)
+        {
+           OnWaveStarted.Invoke(waveIndex);
+        }
+
         Debug.Log("Starting wave #" + waveIndex);
 
         yield return StartCoroutine(spawner.SpawnWave(wave, RegisterEnemy));
