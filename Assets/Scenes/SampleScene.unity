@@ -8758,10 +8758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 894451715}
-  waves:
-  - {fileID: 11400000, guid: 5ea9e96dd79b8504f865115ed88cf946, type: 2}
-  - {fileID: 11400000, guid: ca4dac80bd5a1fd4f8f5653689aa50b1, type: 2}
-  - {fileID: 11400000, guid: 3c16ca72849909c448ad38543dd502c9, type: 2}
+  wavesJson: {fileID: 4900000, guid: fa209a0e3fe9b06448a2f3d861cdddd0, type: 3}
   delayBeforeFirstWave: 3
   delayBetweenWaves: 3
   countdownDigits: 3

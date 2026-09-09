@@ -1,0 +1,31 @@
+{
+  "waves": [
+    {
+      "waveName": "Wave 1",
+      "spawnStagger": 0.15,
+      "spawnRanges": [
+        { "difficulty": "Easy", "minCount": 2, "maxCount": 2 },
+        { "difficulty": "Medium", "minCount": 2, "maxCount": 2 },
+        { "difficulty": "Hard", "minCount": 2, "maxCount": 2 }
+      ]
+    },
+    {
+      "waveName": "Wave 2",
+      "spawnStagger": 0.15,
+      "spawnRanges": [
+        { "difficulty": "Easy", "minCount": 2, "maxCount": 3 },
+        { "difficulty": "Medium", "minCount": 1, "maxCount": 2 },
+        { "difficulty": "Hard", "minCount": 0, "maxCount": 1 }
+      ]
+    },
+    {
+      "waveName": "Wave 3",
+      "spawnStagger": 0.15,
+      "spawnRanges": [
+        { "difficulty": "Easy", "minCount": 1, "maxCount": 3 },
+        { "difficulty": "Medium", "minCount": 1, "maxCount": 3 },
+        { "difficulty": "Hard", "minCount": 1, "maxCount": 2 }
+      ]
+    }
+  ]
+}

@@ -10,7 +10,11 @@ using UnityEngine;
 public class NightManager : MonoBehaviour
 {
     [SerializeField] EnemySpawner spawner;
-    [SerializeField] WaveConfig[] waves = new WaveConfig[3];
+    [Tooltip("Wave definitions as JSON (see WaveConfigJsonLoader/WaveDataJson) - parsed into " +
+             "WaveConfig instances at Awake, instead of hand-authored WaveConfig assets.")]
+    [SerializeField] TextAsset wavesJson;
+
+    WaveConfig[] waves;
 
     [Header("Pacing")]
     [SerializeField] float delayBeforeFirstWave = 2f;
@@ -36,6 +40,11 @@ public class NightManager : MonoBehaviour
 
     readonly List<Health> aliveEnemies = new List<Health>();
     bool nightStarted;
+
+    void Awake()
+    {
+        waves = WaveConfigJsonLoader.Load(wavesJson);
+    }
 
     // Doesn't auto-start in Start() - something else (e.g. NightStartPrompt, gated on a key
     // press) has to call this. Keeps NightManager reactive/driven, the same way it doesn't
