@@ -23,16 +23,22 @@ public class HealthBarUI : MonoBehaviour
     [SerializeField] Slider slider;
     [SerializeField] float fillTweenDuration = 0.2f;
 
+    [Header("Color by health (evaluated left-to-right as health goes from 0 to full)")]
+    [SerializeField] Gradient colorByHealth = DefaultGradient();
+
     [Header("Hit feedback")]
     [SerializeField] float punchScale = 0.15f;
     [SerializeField] float punchDuration = 0.15f;
 
     Tween fillTween;
+    Tween colorTween;
+    Image fillImage;
 
     void Awake()
     {
         if (health == null) health = GetComponentInParent<Health>();
         if (target == null && health != null) target = health.transform;
+        if (slider != null && slider.fillRect != null) fillImage = slider.fillRect.GetComponent<Image>();
 
         transform.SetParent(null, true);
     }
@@ -42,7 +48,15 @@ public class HealthBarUI : MonoBehaviour
         if (health == null) return;
         health.OnDamaged += HandleDamaged;
         health.OnDied += HandleDied;
-        slider.value = SafeRatio();
+    }
+
+    // Reads the initial health ratio here rather than in OnEnable - Unity doesn't guarantee
+    // Health.Awake() (which sets CurrentHealth = maxHealth) runs before this object's OnEnable,
+    // since they're on different GameObjects. Every Awake in the scene is guaranteed to finish
+    // before any Start runs, so this is the first point where reading CurrentHealth is safe.
+    void Start()
+    {
+        ApplyRatio(SafeRatio(), animate: false);
     }
 
     void OnDisable()
@@ -51,6 +65,7 @@ public class HealthBarUI : MonoBehaviour
         health.OnDamaged -= HandleDamaged;
         health.OnDied -= HandleDied;
         fillTween?.Kill();
+        colorTween?.Kill();
     }
 
     void LateUpdate()
@@ -69,8 +84,7 @@ public class HealthBarUI : MonoBehaviour
 
     void HandleDamaged(float amount)
     {
-        fillTween?.Kill();
-        fillTween = slider.DOValue(SafeRatio(), fillTweenDuration);
+        ApplyRatio(SafeRatio(), animate: true);
 
         transform.DOKill(true);
         transform.DOPunchScale(Vector3.one * punchScale, punchDuration, 4, 0.5f);
@@ -81,8 +95,46 @@ public class HealthBarUI : MonoBehaviour
         Destroy(gameObject);
     }
 
+    // Updates both the fill amount and its color together, since they represent the same
+    // piece of information (current health ratio) and should never show conflicting values.
+    void ApplyRatio(float ratio, bool animate)
+    {
+        Color targetColor = colorByHealth.Evaluate(ratio);
+
+        fillTween?.Kill();
+        colorTween?.Kill();
+
+        if (animate)
+        {
+            fillTween = slider.DOValue(ratio, fillTweenDuration);
+            if (fillImage != null) colorTween = fillImage.DOColor(targetColor, fillTweenDuration);
+        }
+        else
+        {
+            slider.value = ratio;
+            if (fillImage != null) fillImage.color = targetColor;
+        }
+    }
+
     float SafeRatio()
     {
         return health.MaxHealth > 0f ? health.CurrentHealth / health.MaxHealth : 0f;
+    }
+
+    // Green at full health, through yellow, to red at empty - a sane default so the field
+    // isn't blank until someone customizes it in the Inspector.
+    static Gradient DefaultGradient()
+    {
+        Gradient gradient = new Gradient();
+        gradient.SetKeys(
+            new[]
+            {
+                new GradientColorKey(new Color(0.85f, 0.15f, 0.15f), 0f),
+                new GradientColorKey(new Color(0.95f, 0.85f, 0.2f), 0.5f),
+                new GradientColorKey(new Color(0.2f, 0.8f, 0.3f), 1f),
+            },
+            new[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(1f, 1f) }
+        );
+        return gradient;
     }
 }

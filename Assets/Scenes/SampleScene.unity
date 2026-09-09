@@ -430,9 +430,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 831410292545666971, guid: cdad7d255529ce648b67917968bc0dff, type: 3}
+      propertyPath: m_Color.b
+      value: 0.4862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 831410292545666971, guid: cdad7d255529ce648b67917968bc0dff, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 831410292545666971, guid: cdad7d255529ce648b67917968bc0dff, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6156863
+      objectReference: {fileID: 0}
     - target: {fileID: 3381457943148011786, guid: cdad7d255529ce648b67917968bc0dff, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4539808315539735544, guid: cdad7d255529ce648b67917968bc0dff, type: 3}
+      propertyPath: m_Colors.m_ColorMultiplier
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5443500885817282464, guid: cdad7d255529ce648b67917968bc0dff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2929,7 +2945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14f89309c33017e4fbc30a7c207300eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
+  maxHealth: 40
 --- !u!114 &846179170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15235,6 +15251,10 @@ PrefabInstance:
     - target: {fileID: 2604558715202346688, guid: 36232d42f23c9614e9ae1cc3411161b8, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669579531394507213, guid: 36232d42f23c9614e9ae1cc3411161b8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
