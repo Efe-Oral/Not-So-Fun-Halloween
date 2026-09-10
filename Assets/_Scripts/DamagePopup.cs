@@ -20,6 +20,13 @@ public class DamagePopup : MonoBehaviour
     [SerializeField] float popScale = 1.3f;
     [SerializeField] float popDuration = 0.15f;
 
+    [Header("Appearance")]
+    [SerializeField] Color textColor = Color.white;
+    [SerializeField] Color outlineColor = Color.black;
+    [Tooltip("0 = no outline. TMP outline width is a fraction of the font's SDF range, so " +
+             "small values (0.1-0.3) are usually enough.")]
+    [SerializeField, Range(0f, 1f)] float outlineWidth = 0.2f;
+
     TMP_Text text;
 
     void Awake()
@@ -29,11 +36,25 @@ public class DamagePopup : MonoBehaviour
 
     public void Show(float amount)
     {
+        // Outline setup lives here, not Awake - Show() is only ever called right after
+        // Instantiate() returns, which Unity guarantees is after every Awake/OnEnable on the
+        // new hierarchy has already run (including TMP_Text's own internal setup). Doing this
+        // in Awake risked running before TMP's own Awake, on a different GameObject, in
+        // whichever order Unity happened to pick - the same class of bug HealthBarUI had.
+        text.outlineWidth = outlineWidth;
+        text.outlineColor = outlineColor;
+
+        // An outline stroke extends past a glyph's normal quad. Without extraPadding, TMP
+        // doesn't allocate that extra room in the mesh, so the outline gets generated but
+        // clipped away right at the glyph edge - invisible, even though the material is
+        // correctly set. UpdateMeshPadding recalculates the mesh now that outlineWidth is set.
+        text.extraPadding = true;
+        text.UpdateMeshPadding();
+
         text.text = Mathf.RoundToInt(amount).ToString();
 
         transform.localScale = Vector3.zero;
-        Color c = text.color;
-        text.color = new Color(c.r, c.g, c.b, 1f);
+        text.color = new Color(textColor.r, textColor.g, textColor.b, 1f);
 
         transform.DOScale(popScale, popDuration).SetEase(Ease.OutBack)
             .OnComplete(() => transform.DOScale(1f, popDuration * 0.5f));
