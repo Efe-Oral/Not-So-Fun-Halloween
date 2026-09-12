@@ -5,7 +5,7 @@ using UnityEngine;
 // automatically stops it from shooting.
 public class ProjectileWeapon : MonoBehaviour
 {
-    [SerializeField] GameObject seedPrefab;  // the pumpkin seed to spawn
+    [SerializeField] PumpkinSeedPool seedPool;
     [SerializeField] float seedSpeed = 12f;
 
     [SerializeField] WeaponInventory weaponInventory;
@@ -26,8 +26,7 @@ public class ProjectileWeapon : MonoBehaviour
         // Direction from the player to the mouse.
         Vector2 direction = (mousePosition - transform.position).normalized;
 
-        // Create the seed at the player, then push it toward the mouse.
-        GameObject seed = Instantiate(seedPrefab, transform.position, Quaternion.identity);
-        seed.GetComponent<Rigidbody2D>().velocity = direction * seedSpeed;
+        // Ask the pool for a seed instead of Instantiate-ing the prefab directly.
+        seedPool.Get(transform.position, direction * seedSpeed);
     }
 }

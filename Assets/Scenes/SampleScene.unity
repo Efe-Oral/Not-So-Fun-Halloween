@@ -1201,6 +1201,53 @@ Transform:
   - {fileID: 640285381}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &422723565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 422723567}
+  - component: {fileID: 422723566}
+  m_Layer: 0
+  m_Name: SeedProjectilePooling
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &422723566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422723565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb7e38763bc720479c70374bff2e469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seedPrefab: {fileID: 1655277306173078624, guid: fed35d53c43506e4b9a1b8ac43400ef8, type: 3}
+  defaultCapacity: 11
+  maxSize: 100
+--- !u!4 &422723567
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422723565}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14.68842, y: 11.037786, z: -0.2501958}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &448886206
 GameObject:
   m_ObjectHideFlags: 0
@@ -2885,7 +2932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53910cd84892bf34587eff1f0e5d8a7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seedPrefab: {fileID: 8849398997237373220, guid: fed35d53c43506e4b9a1b8ac43400ef8, type: 3}
+  seedPool: {fileID: 422723566}
   seedSpeed: 20
   weaponInventory: {fileID: 1047510336}
 --- !u!61 &846179167
@@ -16144,3 +16191,4 @@ SceneRoots:
   - {fileID: 1209153538}
   - {fileID: 448886208}
   - {fileID: 660952457}
+  - {fileID: 422723567}
