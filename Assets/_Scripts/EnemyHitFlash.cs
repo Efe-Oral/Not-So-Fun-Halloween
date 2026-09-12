@@ -50,6 +50,12 @@ public class EnemyHitFlash : MonoBehaviour
     {
         spriteRenderer.color = new Color(flashColor.r, flashColor.g, flashColor.b, 0.8f);
         yield return new WaitForSeconds(flashDuration);
+
+        // A fatal hit fires OnDamaged then OnDied from the same TakeDamage call, so this
+        // routine's restore can land after EnemyDeathVisual has already set the death color -
+        // don't stomp it. EnemyDeathVisual owns the sprite's color once the enemy is dead.
+        if (health != null && health.IsDead) yield break;
+
         spriteRenderer.color = originalColor;
     }
 }

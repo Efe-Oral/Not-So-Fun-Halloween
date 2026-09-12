@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7455328973939044508}
   - component: {fileID: 5162344690966798884}
   - component: {fileID: 8418348742865387045}
+  - component: {fileID: 2923300933009892938}
   m_Layer: 0
   m_Name: freddy
   m_TagString: Untagged
@@ -253,6 +254,20 @@ MonoBehaviour:
   spawnOffset: {x: 0, y: 1, z: 0}
   horizontalJitter: 0.3
   locationOfDamageNumbers: {fileID: 9067976584653228474}
+--- !u!114 &2923300933009892938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3868582839867634199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba109101562cbe945ac3d50720a23819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deadSprite: {fileID: 0}
+  deadColor: {r: 0.49803925, g: 0.83921576, b: 0.98823535, a: 1}
 --- !u!1 &7417473860376403815
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,7 +313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3381457943148011786, guid: cdad7d255529ce648b67917968bc0dff, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5443500885817282464, guid: cdad7d255529ce648b67917968bc0dff, type: 3}
       propertyPath: m_LocalPosition.x

@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 1839501958092251548}
   - component: {fileID: -4136518148088531721}
   - component: {fileID: 9083369442013699401}
+  - component: {fileID: 872131558719215096}
   m_Layer: 0
   m_Name: jason
   m_TagString: Untagged
@@ -284,6 +285,20 @@ MonoBehaviour:
   spawnOffset: {x: 0, y: 1, z: 0}
   horizontalJitter: 0.3
   locationOfDamageNumbers: {fileID: 6653360094683670197}
+--- !u!114 &872131558719215096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2604558715202346688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba109101562cbe945ac3d50720a23819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deadSprite: {fileID: 21300000, guid: c02f1af41c42d01468ef9f6079318ff3, type: 3}
+  deadColor: {r: 0.49803925, g: 0.83921576, b: 0.98823535, a: 1}
 --- !u!1001 &4936661968978362567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -298,7 +313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3381457943148011786, guid: cdad7d255529ce648b67917968bc0dff, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5443500885817282464, guid: cdad7d255529ce648b67917968bc0dff, type: 3}
       propertyPath: m_LocalPosition.x
