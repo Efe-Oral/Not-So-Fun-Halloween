@@ -20,3 +20,4 @@ MonoBehaviour:
   recoverDuration: 0.12
   recoverEase: 7
   cooldown: 0.05
+  damage: 3
