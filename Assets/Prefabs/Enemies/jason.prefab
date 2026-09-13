@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: -4136518148088531721}
   - component: {fileID: 9083369442013699401}
   - component: {fileID: 872131558719215096}
+  - component: {fileID: -3431473560082840544}
   m_Layer: 0
   m_Name: jason
   m_TagString: Untagged
@@ -299,6 +300,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deadSprite: {fileID: 21300000, guid: c02f1af41c42d01468ef9f6079318ff3, type: 3}
   deadColor: {r: 0.49803925, g: 0.83921576, b: 0.98823535, a: 1}
+--- !u!114 &-3431473560082840544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2604558715202346688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afcb3e321a0e4274cb1315e4747ae94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4936661968978362567
 PrefabInstance:
   m_ObjectHideFlags: 0

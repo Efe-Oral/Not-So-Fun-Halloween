@@ -27,5 +27,10 @@
         { "difficulty": "Hard", "minCount": 1, "maxCount": 2 }
       ]
     }
+  ],
+  "coinDrops": [
+    { "difficulty": "Easy", "amount": 5 },
+    { "difficulty": "Medium", "amount": 10 },
+    { "difficulty": "Hard", "amount": 15 }
   ]
 }

@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 5162344690966798884}
   - component: {fileID: 8418348742865387045}
   - component: {fileID: 2923300933009892938}
+  - component: {fileID: 8136847383178376923}
   m_Layer: 0
   m_Name: freddy
   m_TagString: Untagged
@@ -268,6 +269,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deadSprite: {fileID: 0}
   deadColor: {r: 0.49803925, g: 0.83921576, b: 0.98823535, a: 1}
+--- !u!114 &8136847383178376923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3868582839867634199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afcb3e321a0e4274cb1315e4747ae94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7417473860376403815
 GameObject:
   m_ObjectHideFlags: 0

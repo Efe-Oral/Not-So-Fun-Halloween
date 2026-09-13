@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 8012602165780379869}
   - component: {fileID: 2854635813530237605}
   - component: {fileID: 6880317147264307163}
+  - component: {fileID: -3909521241929375188}
   m_Layer: 0
   m_Name: ghostface
   m_TagString: Untagged
@@ -299,6 +300,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deadSprite: {fileID: 21300000, guid: 3783d622f9d619144ad19693aab04a17, type: 3}
   deadColor: {r: 0.49803925, g: 0.83921576, b: 0.98823535, a: 1}
+--- !u!114 &-3909521241929375188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079162018717378878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afcb3e321a0e4274cb1315e4747ae94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5937674289795019413
 PrefabInstance:
   m_ObjectHideFlags: 0
