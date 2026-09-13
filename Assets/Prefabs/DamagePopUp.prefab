@@ -194,8 +194,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -285,6 +285,6 @@ MonoBehaviour:
   duration: 0.8
   popScale: 1.3
   popDuration: 0.15
-  textColor: {r: 0.9169811, g: 0.45304346, b: 0.088237785, a: 1}
+  textColor: {r: 0.86415094, g: 0.20432606, b: 0.12228539, a: 1}
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
   outlineWidth: 0.38
