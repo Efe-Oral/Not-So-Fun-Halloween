@@ -26,4 +26,15 @@ public class CoinWallet : MonoBehaviour
         TotalCoins += amount;
         OnCoinsChanged?.Invoke(TotalCoins);
     }
+
+    // Checks and consumes in one call so callers can't spend based on a stale read - same
+    // pattern as Stamina.TrySpend.
+    public bool TrySpend(int amount)
+    {
+        if (amount <= 0 || TotalCoins < amount) return false;
+
+        TotalCoins -= amount;
+        OnCoinsChanged?.Invoke(TotalCoins);
+        return true;
+    }
 }

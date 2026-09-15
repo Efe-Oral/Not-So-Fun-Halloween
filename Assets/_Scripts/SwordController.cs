@@ -37,7 +37,10 @@ public class SwordController : MonoBehaviour
     void Swing()
     {
         isSwinging = true;
-        if (hitbox != null) hitbox.BeginSwing(config.damage);   // turn the damage trigger on for this swing
+        // PlayerUpgrades.DamageMultiplier defaults to 1 (no bonus) even if no PlayerUpgrades
+        // exists yet - never mutates the shared SwordConfig asset, just scales at the point
+        // damage is actually dealt.
+        if (hitbox != null) hitbox.BeginSwing(config.damage * PlayerUpgrades.DamageMultiplier);   // turn the damage trigger on for this swing
 
         float half = config.swingArc * 0.5f;
 

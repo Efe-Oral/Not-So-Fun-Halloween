@@ -52,7 +52,7 @@ public class PumpkinSeed : MonoBehaviour
         IDamageable target = other.GetComponentInParent<IDamageable>();
         if (target == null || target.IsDead) return;
 
-        target.TakeDamage(damage);
+        target.TakeDamage(damage * PlayerUpgrades.DamageMultiplier);
         Despawn();
     }
 

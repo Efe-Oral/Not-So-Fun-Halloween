@@ -35,24 +35,28 @@ public class NightManager : MonoBehaviour
     public event Action<int> OnCountdownTick;
 
     public int CurrentWaveNumber { get; private set; } // 1-based, 0 before the night starts
+    public int CurrentNightNumber { get; private set; } // 1-based, 0 before the first night
     public int TotalWaves => waves.Length;
     public bool IsNightComplete { get; private set; }
 
     readonly List<Health> aliveEnemies = new List<Health>();
-    bool nightStarted;
+    bool nightInProgress;
 
     void Awake()
     {
         waves = WaveConfigJsonLoader.Load(wavesJson);
     }
 
-    // Doesn't auto-start in Start() - something else (e.g. NightStartPrompt, gated on a key
-    // press) has to call this. Keeps NightManager reactive/driven, the same way it doesn't
-    // know or care who's listening to its own events.
+    // Doesn't auto-start in Start() - something has to call this: NightStartPrompt for the
+    // first night (gated on a key press), StoreController for every night after (gated on the
+    // store's confirm button). Callable repeatedly, once per night - the guard only blocks a
+    // second call while a night is already running, not future nights in general.
     public void BeginNight()
     {
-        if (nightStarted) return;
-        nightStarted = true;
+        if (nightInProgress) return;
+        nightInProgress = true;
+        CurrentNightNumber++;
+        IsNightComplete = false;
         StartCoroutine(RunNight());
     }
 
@@ -79,6 +83,7 @@ public class NightManager : MonoBehaviour
         }
 
         IsNightComplete = true;
+        nightInProgress = false;
         OnNightComplete?.Invoke();
     }
 

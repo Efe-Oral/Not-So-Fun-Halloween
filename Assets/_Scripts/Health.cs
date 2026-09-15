@@ -61,4 +61,13 @@ public class Health : MonoBehaviour, IDamageable
         if (refill) CurrentHealth = maxHealth;
         IsDead = false;
     }
+
+    // Raises max HP by 'amount' and heals by the same amount, so a max-HP upgrade reads as an
+    // immediate net gain rather than just a bigger ceiling on the same current pool.
+    public void IncreaseMaxHealth(float amount)
+    {
+        if (amount <= 0f) return;
+        maxHealth += amount;
+        CurrentHealth = Mathf.Min(CurrentHealth + amount, maxHealth);
+    }
 }
