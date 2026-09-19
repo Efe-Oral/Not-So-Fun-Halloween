@@ -9,30 +9,63 @@ using UnityEngine;
 // CoinDropTable's static accessors.
 public class PlayerUpgrades : MonoBehaviour
 {
-    public enum UpgradeType { MoveSpeed, Health, Damage }
+    public enum UpgradeType
+    {
+        MoveSpeed,
+        Health,
+        Damage,
+    }
 
     [Serializable]
     public class UpgradeDefinition
     {
         public string displayName;
-        [Tooltip("Bonus granted per level - a fraction for move speed/damage (0.1 = +10%), a " +
-                 "flat amount for health.")]
+
+        [Tooltip(
+            "Bonus granted per level - a fraction for move speed/damage (0.1 = +10%), a "
+                + "flat amount for health."
+        )]
         public float amountPerLevel;
         public int baseCost;
         public int costIncreasePerLevel;
     }
 
-    [SerializeField] UpgradeDefinition moveSpeedUpgrade = new UpgradeDefinition
-        { displayName = "Move Speed", amountPerLevel = 0.1f, baseCost = 20, costIncreasePerLevel = 10 };
-    [SerializeField] UpgradeDefinition healthUpgrade = new UpgradeDefinition
-        { displayName = "Max Health", amountPerLevel = 10f, baseCost = 20, costIncreasePerLevel = 10 };
-    [SerializeField] UpgradeDefinition damageUpgrade = new UpgradeDefinition
-        { displayName = "Attack Damage", amountPerLevel = 0.15f, baseCost = 25, costIncreasePerLevel = 12 };
+    [SerializeField]
+    UpgradeDefinition moveSpeedUpgrade = new UpgradeDefinition
+    {
+        displayName = "Move Speed",
+        amountPerLevel = 0.1f,
+        baseCost = 20,
+        costIncreasePerLevel = 10,
+    };
+
+    [SerializeField]
+    UpgradeDefinition healthUpgrade = new UpgradeDefinition
+    {
+        displayName = "Max Health",
+        amountPerLevel = 10f,
+        baseCost = 20,
+        costIncreasePerLevel = 10,
+    };
+
+    [SerializeField]
+    UpgradeDefinition damageUpgrade = new UpgradeDefinition
+    {
+        displayName = "Attack Damage",
+        amountPerLevel = 0.15f,
+        baseCost = 25,
+        costIncreasePerLevel = 12,
+    };
 
     [Tooltip("Left empty, these look for the matching component on this object.")]
-    [SerializeField] PlayerController playerController;
-    [SerializeField] Health health;
-    [SerializeField] CoinWallet wallet;
+    [SerializeField]
+    PlayerController playerController;
+
+    [SerializeField]
+    Health health;
+
+    [SerializeField]
+    CoinWallet wallet;
 
     public int MoveSpeedLevel { get; private set; }
     public int HealthLevel { get; private set; }
@@ -46,22 +79,26 @@ public class PlayerUpgrades : MonoBehaviour
 
     void Awake()
     {
-        if (playerController == null) playerController = GetComponent<PlayerController>();
-        if (health == null) health = GetComponent<Health>();
-        if (wallet == null) wallet = GetComponent<CoinWallet>();
+        if (playerController == null)
+            playerController = GetComponent<PlayerController>();
+        if (health == null)
+            health = GetComponent<Health>();
+        if (wallet == null)
+            wallet = GetComponent<CoinWallet>();
 
         // Reset static state - matters if this component is ever re-created (e.g. stopping
         // and re-entering Play Mode in the Editor keeps static fields from the last run).
         damageMultiplier = 1f;
     }
 
-    public int GetLevel(UpgradeType type) => type switch
-    {
-        UpgradeType.MoveSpeed => MoveSpeedLevel,
-        UpgradeType.Health => HealthLevel,
-        UpgradeType.Damage => DamageLevel,
-        _ => 0
-    };
+    public int GetLevel(UpgradeType type) =>
+        type switch
+        {
+            UpgradeType.MoveSpeed => MoveSpeedLevel,
+            UpgradeType.Health => HealthLevel,
+            UpgradeType.Damage => DamageLevel,
+            _ => 0,
+        };
 
     public string GetDisplayName(UpgradeType type) => GetDefinition(type).displayName;
 
@@ -73,7 +110,8 @@ public class PlayerUpgrades : MonoBehaviour
 
     public bool TryPurchase(UpgradeType type)
     {
-        if (wallet == null || !wallet.TrySpend(GetCost(type))) return false;
+        if (wallet == null || !wallet.TrySpend(GetCost(type)))
+            return false;
 
         ApplyUpgrade(type);
         OnUpgradesChanged?.Invoke();
@@ -87,12 +125,14 @@ public class PlayerUpgrades : MonoBehaviour
             case UpgradeType.MoveSpeed:
                 MoveSpeedLevel++;
                 if (playerController != null)
-                    playerController.SpeedMultiplier = 1f + moveSpeedUpgrade.amountPerLevel * MoveSpeedLevel;
+                    playerController.SpeedMultiplier =
+                        1f + moveSpeedUpgrade.amountPerLevel * MoveSpeedLevel;
                 break;
 
             case UpgradeType.Health:
                 HealthLevel++;
-                if (health != null) health.IncreaseMaxHealth(healthUpgrade.amountPerLevel);
+                if (health != null)
+                    health.IncreaseMaxHealth(healthUpgrade.amountPerLevel);
                 break;
 
             case UpgradeType.Damage:
@@ -102,11 +142,12 @@ public class PlayerUpgrades : MonoBehaviour
         }
     }
 
-    UpgradeDefinition GetDefinition(UpgradeType type) => type switch
-    {
-        UpgradeType.MoveSpeed => moveSpeedUpgrade,
-        UpgradeType.Health => healthUpgrade,
-        UpgradeType.Damage => damageUpgrade,
-        _ => null
-    };
+    UpgradeDefinition GetDefinition(UpgradeType type) =>
+        type switch
+        {
+            UpgradeType.MoveSpeed => moveSpeedUpgrade,
+            UpgradeType.Health => healthUpgrade,
+            UpgradeType.Damage => damageUpgrade,
+            _ => null,
+        };
 }

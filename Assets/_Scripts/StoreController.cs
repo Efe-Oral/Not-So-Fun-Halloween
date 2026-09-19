@@ -6,7 +6,7 @@ using UnityEngine;
 // banner/audio - both reacting to the same NightManager.OnNightComplete - play out normally
 // before the store takes over. Only then does it pause the game (Time.timeScale = 0) and show
 // the store panel - Unity's UI event system isn't tied to timeScale, so buttons keep working
-// while the world underneath is frozen.
+// while the world underneath is frozen
 public class StoreController : MonoBehaviour
 {
     [SerializeField] NightManager nightManager;
@@ -22,6 +22,7 @@ public class StoreController : MonoBehaviour
     void OnDisable()
     {
         if (nightManager != null) nightManager.OnNightComplete -= HandleNightComplete;
+        storePanel.SetActive(false);
     }
 
     void Start()
