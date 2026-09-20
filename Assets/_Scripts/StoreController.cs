@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 // Shows the store after a night ends, and starts the next night when the player confirms.
@@ -13,6 +14,20 @@ public class StoreController : MonoBehaviour
     [Tooltip("The full-screen store panel - should completely cover the game view.")]
     [SerializeField] GameObject storePanel;
     [SerializeField] float delayBeforeStore = 2f;
+    [SerializeField] float fadeDuration = 0.5f;
+
+    CanvasGroup canvasGroup;
+    Tween fadeTween;
+
+    void Awake()
+    {
+        // Left to auto-find: add a CanvasGroup to Store UI (or its Canvas) and this picks it up.
+        // includeInactive so it's found even though the panel is hidden.
+        if (storePanel != null) canvasGroup = storePanel.GetComponentInChildren<CanvasGroup>(true);
+        if (canvasGroup == null)
+            Debug.LogWarning("StoreController: no CanvasGroup under storePanel - the store will " +
+                             "open instantly. Add a CanvasGroup to 'Store UI' to get the fade.", this);
+    }
 
     void OnEnable()
     {
@@ -22,6 +37,7 @@ public class StoreController : MonoBehaviour
     void OnDisable()
     {
         if (nightManager != null) nightManager.OnNightComplete -= HandleNightComplete;
+        fadeTween?.Kill();
         storePanel.SetActive(false);
     }
 
@@ -39,8 +55,35 @@ public class StoreController : MonoBehaviour
     {
         yield return new WaitForSeconds(delayBeforeStore);
 
-        if (storePanel != null) storePanel.SetActive(true);
+        if (storePanel != null)
+        {
+            // Start fully transparent BEFORE activating, so there's no one-frame flash of the
+            // finished panel. Non-interactable until the fade ends so a half-visible Buy button
+            // can't be clicked.
+            if (canvasGroup != null)
+            {
+                canvasGroup.alpha = 0f;
+                canvasGroup.interactable = false;
+            }
+
+            storePanel.SetActive(true);
+            FadeIn();
+        }
+
         Time.timeScale = 0f;
+    }
+
+    // SetUpdate(true) makes the tween ignore Time.timeScale. DOTween tweens use scaled time by
+    // default, so without it this fade would never advance: the game is paused (timeScale = 0)
+    // the moment the panel appears.
+    void FadeIn()
+    {
+        if (canvasGroup == null) return;
+
+        fadeTween?.Kill();
+        fadeTween = canvasGroup.DOFade(1f, fadeDuration)
+            .SetUpdate(true)
+            .OnComplete(() => canvasGroup.interactable = true);
     }
 
     // Wired to the store's Confirm button (Button.onClick).

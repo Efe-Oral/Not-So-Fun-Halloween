@@ -1,11 +1,13 @@
 using TMPro;
 using UnityEngine;
 
-// Displays the player's coin total. Subscribes to CoinWallet.OnCoinsChanged in OnEnable, but
-// reads the *initial* value in Start rather than OnEnable - CoinWallet's own Awake doesn't set
-// TotalCoins to anything but 0 by default so there's no race to worry about here, but Start is
-// still the safe habit for reading another object's state (see HealthBarUI for the case where
-// this ordering actually mattered).
+// Displays the player's coin total. Subscribes to CoinWallet.OnCoinsChanged AND re-reads the
+// current total in OnEnable, not Start: this can live on something that gets hidden and re-shown
+// (the store panel), and Start only runs once, so a re-shown counter would display whatever the
+// total was the first time it opened. While disabled it's also unsubscribed, so it misses
+// every coin collected in between - the re-read on enable is what catches it up.
+// Reading in OnEnable is safe here because CoinWallet.TotalCoins has no Awake dependency (it's
+// just 0 until coins arrive); HealthBarUI is the case where that ordering did matter.
 public class CoinCounterUI : MonoBehaviour
 {
     [SerializeField] CoinWallet wallet;
@@ -13,17 +15,15 @@ public class CoinCounterUI : MonoBehaviour
 
     void OnEnable()
     {
-        if (wallet != null) wallet.OnCoinsChanged += HandleCoinsChanged;
+        if (wallet == null) return;
+
+        wallet.OnCoinsChanged += HandleCoinsChanged;
+        HandleCoinsChanged(wallet.TotalCoins);
     }
 
     void OnDisable()
     {
         if (wallet != null) wallet.OnCoinsChanged -= HandleCoinsChanged;
-    }
-
-    void Start()
-    {
-        if (wallet != null) HandleCoinsChanged(wallet.TotalCoins);
     }
 
     void HandleCoinsChanged(int total)
